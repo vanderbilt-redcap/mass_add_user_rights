@@ -17,6 +17,10 @@ p { max-width: 800px; padding: 4px; }
 button { font-size: 1.2em; }
 input[type=text] { font-size: 1.2em; }
 </style>";
+if (!$module->isSuperUser()) {
+    echo "<p>You must be a super user to use this script.</p>";
+    exit;
+}
 $mimicUsername = $module->escape($_POST['mimicUsername'] ?? "");
 $url = $module->getUrl("add.php");
 if (($_POST['username'] ?? "") && !empty($_POST['projects'] ?? []) && ($_POST['mimicUsername'] ?? "")) {
